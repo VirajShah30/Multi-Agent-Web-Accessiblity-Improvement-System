@@ -2,7 +2,7 @@ import json
 import torch
 from transformers import T5Tokenizer, T5ForConditionalGeneration
 
-class ContrastAgentManager:
+class ContrastAgent:
     def __init__(self, model_dir: str = "virajns2/contrast-violation-t5", device: str = None):
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
         self.tokenizer = T5Tokenizer.from_pretrained(model_dir)
