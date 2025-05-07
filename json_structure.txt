@@ -1,0 +1,69 @@
+root
+├─ page_id                     (string)
+└─ viewports                   (array)
+    └─ [0]                     (object)   ← one entry per tested viewport
+        ├─ viewport            (string)   e.g. "1366-768"
+        ├─ semantic            (object)
+        │   ├─ lang            (string)
+        │   ├─ headings        (array of [headingLevel, headingText])
+        │   ├─ images          (array)
+        │   │   └─ [i]
+        │   │       ├─ nodeId  (string)
+        │   │       └─ alt     (string)
+        │   ├─ missing_alt     (array of nodeId)
+        │   ├─ links           (array)
+        │   │   └─ [i]
+        │   │       ├─ nodeId  (string)
+        │   │       └─ text    (string)
+        │   └─ missing_name    (array of nodeId)
+        ├─ contrast            (array)
+        │   └─ [i]
+        │       ├─ role        (string)
+        │       ├─ backendId   (number)
+        │       ├─ fg          (array [R,G,B])
+        │       ├─ bg          (array [R,G,B])
+        │       └─ contrast    (number → ratio)
+        ├─ image_captioning    (array)
+        │   └─ [i]
+        │       ├─ nodeId      (string)
+        │       ├─ alt         (string)
+        │       └─ bbox        (object)
+        │           ├─ x       (number)
+        │           ├─ y       (number)
+        │           ├─ width   (number)
+        │           └─ height  (number)
+        ├─ axe                 (object)  ← full aXe‑core accessibility report
+        │   ├─ testEngine      (object: name, version)
+        │   ├─ testRunner      (object: name)
+        │   ├─ testEnvironment (object)
+        │   │   ├─ userAgent
+        │   │   ├─ windowWidth
+        │   │   ├─ windowHeight
+        │   │   ├─ orientationAngle
+        │   │   └─ orientationType
+        │   ├─ timestamp       (ISO‑8601 string)
+        │   ├─ url             (string)
+        │   ├─ toolOptions     (object: reporter)
+        │   ├─ violations      (array)
+        │   │   └─ [v]
+        │   │       ├─ id
+        │   │       ├─ impact
+        │   │       ├─ tags            (array)
+        │   │       ├─ description
+        │   │       ├─ help
+        │   │       ├─ helpUrl
+        │   │       └─ nodes           (array)
+        │   │           └─ [n]
+        │   │               ├─ any     (array of rule‑checks)
+        │   │               │   └─ [a] (id, data, relatedNodes, impact, message)
+        │   │               ├─ all     (array of rule‑checks)
+        │   │               ├─ none    (array of rule‑checks)
+        │   │               ├─ impact  (string/null)
+        │   │               ├─ html    (string ‑ offending element)
+        │   │               ├─ target  (array of selectors)
+        │   │               └─ failureSummary (string)
+        │   ├─ passes         (array)      ┐
+        │   ├─ incomplete     (array)      │ same node schema as *violations*
+        │   └─ inapplicable   (array)      ┘
+        ├─ html_path          (string → local HTML file path)
+        └─ screenshot         (string → full‑page screenshot path)
